@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[hexo+github搭建个人博客]]></title>
+    <url>%2F2018%2F07%2F20%2Fpage%2F</url>
+    <content type="text"><![CDATA[这个博客的搭建使用的是静态博客搭建框架hexo，配与next作为博客主题，最后将博客放到github上。省去了申请域名等麻烦的工作，使得搭建博客变得轻松简单。 Hexo是一个快速、简洁且高效的博客框架。Hexo使用Markdown或其他渲染引擎解析文章，在几秒内，即可利用靓丽的主题生成静态网页。 Next是hexo下的一个主题，在hexo中，阔以通过切换主题实现博客外观的改变。 安装Hexo依赖 Node.js git 需要电脑上先安装好Node.js和git 然后是安装hexo1npm install -g hexo 安装完毕后，选择一个文件夹，执行hexo init指令生成建立博客所需要的文件1hexo init 接着是安装所需要的依赖1npm install 等待依赖安装的过程可以看一下hexo的一些常用命令，不需要记，后面用到了再来看就行12345hexo g # hexo generate 命令的简写，用于生成静态文件hexo s # hexo server 命令的简写，用于启动服务器进行本地预览hexo d # hexo deploy 命令的简写，用于将本地文件发布到github上hexo n # hexo new 命令的简写，用于新建一篇文章hexo clean # 清除缓存文件（db.json）和已生成的静态文件（public） 在依赖安装完毕后，执行hexo g和hexo s，生成静态文件并启动服务器12hexo ghexo s 可以看到博客已经运行在 localhost:4000 端口上了，打开浏览器访问该地址即可以看到我们的博客已经搭建起来了，在这里可以非常方便地进行本地预览。更多细节可以参考官方文档 主题hexo默认使用的主题是landscape，我这里使用了最近比较流行的next主题。hexo安装主题的过程十分简单，在目录下找到themes文件夹，将要使用的主题文件夹拷入其中，再稍微修改一下配置即可。 安装nextnext有两种安装方式第一种是直接使用 git 克隆到themes文件夹，之后也可以直接通过git pull进行更新12// 定位至themes文件夹目录下git clone https://github.com/iissnan/hexo-theme-next 第二种是下载压缩包，然后解压至themes文件夹next版本发布页面 启用主题把next放入themes文件夹后，找到站点配置文件（根目录下的_config.yml文件），将theme字段的值改为next。如图所示 这时候执行ctrl + C中止本地服务器，然后通过hexo clean清除缓存后，再启动服务器，就可以看到博客的主题已经变成了next了。12hexo cleanhexo s next有很多可以自行配置的设定，如主题设定，语言设定，菜单设定，侧栏设定等等，还有很多诸如评论系统，内容分享，数据统计等强大功能。这里先埋个坑，不多赘述，详情可以前往next官网查看，以后有时间再补充。 部署到githubgithub仓库配置本地预览得满意了，下一步当然就是部署到网上给别人观赏~如果还未拥有github账号，就先去注册申请一个。 新建一个仓库，名字必须是你的github账号名.github.io如图所示，我的账号名是Darkindom，所以我的仓库名相应的就是Darkindom.github.io(这里仓库名前面要和你的账号名一致) 部署本地文件找到站点配置文件（根目录下的_config.yml文件），将其中的deploy改成以下格式（如果没有该字段就新建一个）。 这里如果是第一次使用github，或者更改过账号，可能需要重新配置一下SSH（因为之前使用公司的博客时，用的是另一个github账号，所以切换回来后部署的时候说权限错误，就需要重新配置SSH） 输入以下命令，如果提示要你输入的时候可以先输入回车，如果提示是否要覆盖原先SSH(y/n)输入y1ssh-keygen -t rsa -C &apos;your@email.com&apos; 接着输入以下命令1ssh-agent -s 如果这一步出错，就输入以下命令12eval `ssh-agent -s`ssh-add 接下来就可以把SSH拷贝出来，添加到github账户上了1cat ~/.ssh/id_rsa.pub 将控制台里的那一长串SSH拷贝，打开github账户title随便起一个自己容易辨别的，key里粘贴刚刚复制的SSH 最后测试一下，1ssh -T git@github.com 显示这样就是SSH配置好了 执行hexo g，hexo d部署到github上12hexo ghexo d 如果报了Error Deployer not found: git的错就安装hexo-deployer-git模块1npm install --save hexo-deployer-git 再执行hexo d,完成部署。打开浏览器，输入地址，比如我的就是https://darkindom.github.io/ 大功告成~！ 发布文章关于发布文章的可以看我的另一篇博客《使用hexo写文章》这里再提一点，多人合作的话可以将博客的相关代码保存在另一个git仓库，这样每次发布或者修改文章了，都可以备份到另一个仓库里，然后给权限即可。 参考嘟嘟独立博客 hexo干活系列：（一）hexo+github搭建个人独立博客 | 作者：Dk]]></content>
+      <categories>
+        <category>编程工具</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>next</tag>
+      </tags>
+  </entry>
+</search>
